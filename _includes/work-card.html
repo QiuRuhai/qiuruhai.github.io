@@ -1,0 +1,22 @@
+{% comment %}
+  Renders a single work card. Expects: include.work
+{% endcomment %}
+<a class="work-card" href="{{ include.work.url | relative_url }}">
+  <div class="work-card-media">
+    {% if include.work.image %}
+      <img src="{{ include.work.image | relative_url }}" alt="{{ include.work.title }}">
+    {% else %}
+      <div class="work-card-media-empty">no image</div>
+    {% endif %}
+  </div>
+  <div class="work-card-body">
+    <h3 class="work-card-title">{{ include.work.title }}</h3>
+    <p class="work-card-meta">
+      {% for tag in include.work.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      {% if include.work.year %}<span class="year">· {{ include.work.year }}</span>{% endif %}
+    </p>
+    {% if include.work.description %}
+      <p class="work-card-desc">{{ include.work.description }}</p>
+    {% endif %}
+  </div>
+</a>

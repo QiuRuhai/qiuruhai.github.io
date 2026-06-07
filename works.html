@@ -1,0 +1,18 @@
+---
+layout: default
+title: 作品
+permalink: /works/
+description: QiuRuhai 做过的图形学 demo、仿真实验、代码项目。
+---
+
+<section class="page-intro">
+  <h1>我做过的东西</h1>
+  <p>下面这些是我比较喜欢拿出来的项目。点开任何一项可以看到详细说明、代码、视频。</p>
+</section>
+
+<section class="works-grid">
+  {% assign sorted_works = site.works | sort: 'year' | reverse %}
+  {% for work in sorted_works %}
+    {% include work-card.html work=work %}
+  {% endfor %}
+</section>

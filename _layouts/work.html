@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<article class="work-detail">
+  <header class="work-detail-head">
+    <p class="back-link"><a href="{{ '/works' | relative_url }}">← 返回作品</a></p>
+    <h1>{{ page.title }}</h1>
+    <p class="work-detail-meta">
+      {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      {% if page.year %}<span class="year">· {{ page.year }}</span>{% endif %}
+    </p>
+    <p class="work-detail-links">
+      {% if page.github %}<a href="{{ page.github }}" target="_blank" rel="noopener">GitHub →</a>{% endif %}
+      {% if page.video %}<a href="{{ page.video }}" target="_blank" rel="noopener">视频 →</a>{% endif %}
+      {% if page.paper %}<a href="{{ page.paper }}" target="_blank" rel="noopener">论文 →</a>{% endif %}
+    </p>
+  </header>
+
+  {% if page.image %}
+    <figure class="work-detail-hero">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    </figure>
+  {% endif %}
+
+  <div class="work-detail-body">
+    {{ content }}
+  </div>
+</article>
