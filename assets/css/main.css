@@ -1,1 +1,319 @@
-/* Placeholder — real styles in Task 12. */
+/* ============================================================
+   QiuRuhai personal site — main stylesheet
+   Sections:
+     1. Design tokens
+     2. Reset & base
+     3. Layout chrome (header / footer / main container)
+     4. Homepage (hero, resume snippet, entry cards)
+     5. Works listing & card
+     6. Work detail page
+     7. About page (markdown body)
+     8. Blog page
+     9. Decorations & utilities
+   ============================================================ */
+
+/* -------- 1. Design tokens -------- */
+:root {
+  --bg: #fbf7f1;
+  --bg-elev: #fffaf3;
+  --text: #2c2c2c;
+  --text-muted: #6b6b6b;
+  --border: #e7ddd0;
+  --accent: #d97757;
+  --accent-soft: #f0c3b0;
+
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Source Han Sans SC', 'PingFang SC', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --space-7: 96px;
+
+  --content-max: 780px;
+  --wide-max: 1100px;
+  --radius: 14px;
+  --shadow-soft: 0 4px 18px rgba(60, 40, 30, 0.06);
+}
+
+/* -------- 2. Reset & base -------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 1.2; margin: 0 0 var(--space-3); }
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.7rem; }
+h3 { font-size: 1.25rem; }
+p { margin: 0 0 var(--space-3); }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s ease; }
+a:hover { border-bottom-color: var(--accent); }
+strong { color: var(--text); font-weight: 600; }
+code, pre { font-family: var(--font-mono); font-size: 0.9em; }
+pre { background: var(--bg-elev); padding: var(--space-3); border-radius: var(--radius); overflow-x: auto; border: 1px solid var(--border); }
+code { background: var(--bg-elev); padding: 1px 5px; border-radius: 4px; border: 1px solid var(--border); }
+pre code { background: none; padding: 0; border: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* -------- 3. Layout chrome -------- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  max-width: var(--wide-max);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-4);
+}
+.site-brand { font-family: var(--font-serif); font-size: 1.1rem; color: var(--text); border: none; }
+.site-brand .brand-tag { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem; margin-left: var(--space-2); }
+.site-nav a { margin-left: var(--space-4); color: var(--text); border: none; font-size: 0.95rem; }
+.site-nav a:hover { color: var(--accent); }
+
+.site-main {
+  max-width: var(--wide-max);
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+.site-footer {
+  max-width: var(--wide-max);
+  margin: var(--space-7) auto var(--space-5);
+  padding: var(--space-4);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.site-footer .footer-mark { font-family: var(--font-mono); font-size: 0.8rem; opacity: 0.7; }
+
+/* -------- 4. Homepage -------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: center;
+  margin: var(--space-5) 0 var(--space-6);
+}
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; gap: var(--space-4); }
+}
+.hero-name { font-size: 2.6rem; margin-bottom: var(--space-2); }
+.hero-tag { font-size: 1.1rem; color: var(--text-muted); margin-bottom: var(--space-4); }
+.hero-bio { max-width: 38ch; color: var(--text); }
+.hero-visual img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  transform: rotate(-0.5deg);
+}
+.hero-caption {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: var(--space-3);
+  font-style: italic;
+}
+
+.resume-snippet {
+  max-width: var(--content-max);
+  margin: var(--space-6) auto;
+  padding: var(--space-4);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.resume-snippet h2 { font-size: 1.2rem; margin-bottom: var(--space-3); }
+.resume-list { list-style: none; padding: 0; margin: 0; }
+.resume-list li { padding: var(--space-2) 0; border-bottom: 1px dashed var(--border); font-size: 0.95rem; }
+.resume-list li:last-child { border-bottom: none; }
+.resume-list strong { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); margin-right: var(--space-3); }
+
+.entry-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+@media (max-width: 760px) {
+  .entry-cards { grid-template-columns: 1fr; }
+}
+.entry-card {
+  display: block;
+  padding: var(--space-4);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transform: rotate(0.3deg);
+}
+.entry-card:nth-child(2) { transform: rotate(-0.4deg); }
+.entry-card:nth-child(3) { transform: rotate(0.5deg); }
+.entry-card:hover {
+  transform: rotate(0) translateY(-2px);
+  box-shadow: var(--shadow-soft);
+  border-color: var(--accent-soft);
+}
+.entry-card h3 { color: var(--accent); margin-bottom: var(--space-2); }
+.entry-card p { color: var(--text-muted); font-size: 0.95rem; margin: 0; }
+
+/* -------- 5. Works listing & card -------- */
+.page-intro {
+  max-width: var(--content-max);
+  margin: var(--space-5) auto var(--space-5);
+  text-align: center;
+}
+.page-intro h1 { font-size: 2rem; }
+.page-intro p { color: var(--text-muted); }
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-5) 0;
+}
+@media (max-width: 760px) {
+  .works-grid { grid-template-columns: 1fr; }
+}
+
+.work-card {
+  display: block;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: var(--text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transform: rotate(-0.2deg);
+}
+.work-card:nth-child(even) { transform: rotate(0.2deg); }
+.work-card:hover {
+  transform: rotate(0) translateY(-3px);
+  box-shadow: var(--shadow-soft);
+  border-color: var(--accent-soft);
+}
+.work-card-media { aspect-ratio: 16 / 9; background: var(--bg); overflow: hidden; }
+.work-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.work-card:hover .work-card-media img { transform: scale(1.03); }
+.work-card-media-empty {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;
+}
+.work-card-body { padding: var(--space-3) var(--space-4); }
+.work-card-title { font-size: 1.15rem; margin-bottom: var(--space-2); }
+.work-card-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-2); }
+.work-card-meta .tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+.work-card-meta .year { font-family: var(--font-mono); }
+.work-card-desc { font-size: 0.9rem; color: var(--text); margin: 0; }
+
+/* -------- 6. Work detail page -------- */
+.work-detail {
+  max-width: var(--content-max);
+  margin: var(--space-5) auto;
+}
+.back-link { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+.back-link a { color: var(--text-muted); border: none; }
+.back-link a:hover { color: var(--accent); }
+.work-detail-head h1 { margin-top: var(--space-2); }
+.work-detail-meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: var(--space-3); }
+.work-detail-meta .tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+.work-detail-links { margin-bottom: var(--space-5); }
+.work-detail-links a {
+  display: inline-block;
+  margin-right: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+.work-detail-hero { margin: var(--space-4) 0; }
+.work-detail-hero img { border-radius: var(--radius); box-shadow: var(--shadow-soft); }
+.work-detail-body h2 { margin-top: var(--space-5); }
+.work-detail-body h3 { margin-top: var(--space-4); }
+
+/* -------- 7. About page (markdown body) -------- */
+/* about.md renders directly into .site-main; constrain its width. */
+.site-main > h1:first-of-type,
+.site-main > h2,
+.site-main > h3,
+.site-main > p,
+.site-main > ul,
+.site-main > ol,
+.site-main > table,
+.site-main > blockquote {
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+.site-main > blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: var(--space-3);
+  color: var(--text-muted);
+  font-style: italic;
+}
+.site-main > table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: var(--space-4) auto;
+  font-size: 0.95rem;
+}
+.site-main > table th, .site-main > table td {
+  border: 1px solid var(--border);
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+}
+.site-main > table th { background: var(--bg-elev); font-family: var(--font-mono); font-size: 0.85rem; }
+
+/* -------- 8. Blog page -------- */
+.post-list { list-style: none; padding: 0; max-width: var(--content-max); margin: var(--space-5) auto; }
+.post-list li { padding: var(--space-3) 0; border-bottom: 1px dashed var(--border); }
+.post-list .post-date { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem; margin-left: var(--space-2); }
+
+/* -------- 9. Decorations & utilities -------- */
+.hero-doodle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  color: var(--accent);
+}
+.hero-doodle svg { width: 60px; height: 30px; transform: rotate(8deg); }
+.doodle-label { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); }
+
+.name-mark {
+  position: relative;
+  display: inline-block;
+  color: var(--accent);
+}
+.name-mark::after {
+  content: "";
+  position: absolute;
+  inset: -6px -14px -4px -14px;
+  background: url('/assets/svg/doodle-circle.svg') center/100% 100% no-repeat;
+  pointer-events: none;
+}
