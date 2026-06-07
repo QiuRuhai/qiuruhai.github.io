@@ -1,0 +1,49 @@
+---
+layout: default
+title: ""
+description: QiuRuhai · 图形学与物理仿真方向 · 个人主页
+---
+
+<section class="hero">
+  <div class="hero-text">
+    <h1 class="hero-name">嗨，我是 <span class="name-mark">QiuRuhai</span> 👋</h1>
+    <p class="hero-tag">在做 <strong>图形学</strong> 与 <strong>物理仿真</strong>。</p>
+    <p class="hero-bio">
+      喜欢把数学公式变成会动的画面，看流体翻涌、光线穿透薄雾的样子。
+      这里放一些我做过的小东西，欢迎逛逛。
+    </p>
+    <div class="hero-doodle" aria-hidden="true">
+      <span class="doodle-label">往下逛逛</span>
+      {% include_relative assets/svg/doodle-arrow.svg %}
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="{{ '/assets/images/yaoray-sportscar.png' | relative_url }}" alt="YaoRay 渲染：使用 Dupuy & Jakob 2018 测量 BRDF 渲染的虹彩车漆">
+    <p class="hero-caption">↑ 我的 <a href="{{ '/works/yaoray/' | relative_url }}">YaoRay</a> 路径追踪器渲染的车漆（测量 BRDF）</p>
+  </div>
+</section>
+
+<section class="resume-snippet">
+  <h2>关于我（短版）</h2>
+  <ul class="resume-list">
+    <li><strong>方向</strong>：实时图形学 / 物理仿真 / 渲染</li>
+    <li><strong>常用</strong>：C++ · GLSL · Python</li>
+    <li><strong>找</strong>：研究合作 / 实习 / 同好聊聊</li>
+    <li><strong>联系</strong>：<a href="https://github.com/QiuRuhai">GitHub</a></li>
+  </ul>
+</section>
+
+<section class="entry-cards">
+  <a class="entry-card" href="{{ '/works' | relative_url }}">
+    <h3>作品 →</h3>
+    <p>我做过的图形 demo、仿真实验、代码项目。</p>
+  </a>
+  <a class="entry-card" href="{{ '/about' | relative_url }}">
+    <h3>关于 →</h3>
+    <p>详细一点的简历、经历、想法。</p>
+  </a>
+  <a class="entry-card" href="{{ '/blog' | relative_url }}">
+    <h3>博客 →</h3>
+    <p>偶尔写写技术笔记（也许）。</p>
+  </a>
+</section>
