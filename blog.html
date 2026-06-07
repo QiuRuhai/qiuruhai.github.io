@@ -1,0 +1,26 @@
+---
+layout: default
+title: 博客
+permalink: /blog/
+description: QiuRuhai 偶尔写的技术笔记。
+---
+
+<section class="page-intro">
+  <h1>博客</h1>
+  {% if site.posts.size == 0 %}
+    <p>这里暂时还没什么内容。如果哪天想认真写点东西，会先出现在这里。</p>
+  {% else %}
+    <p>下面是写过的一些文章。</p>
+  {% endif %}
+</section>
+
+{% if site.posts.size > 0 %}
+<ul class="post-list">
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <span class="post-date">· {{ post.date | date: "%Y-%m-%d" }}</span>
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}
