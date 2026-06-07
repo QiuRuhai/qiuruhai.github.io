@@ -1,0 +1,8 @@
+<footer class="site-footer">
+  <p>
+    © {{ site.time | date: '%Y' }} {{ site.author }} ·
+    <a href="https://github.com/{{ site.social.github }}" target="_blank" rel="noopener">GitHub</a>
+    {% if site.email != "" %}· <a href="mailto:{{ site.email }}">邮箱</a>{% endif %}
+  </p>
+  <p class="footer-mark">made with care 🌱</p>
+</footer>
